@@ -21,8 +21,13 @@ public class Program {
 		for(Seller obj : list) {
 			System.out.println(obj);
 		}
+		
 		Seller newSeller = new Seller(null, "Jhon", "Jhon@gmail.com", new Date(), 4000.0, department);
 		sellerDao.insert(newSeller);
+		
+		newSeller = sellerDao.findById(3);
+		newSeller.setName("Rogerio");
+		sellerDao.update(newSeller);
 
 	}
 
