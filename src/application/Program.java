@@ -28,6 +28,7 @@ public class Program {
 		newSeller = sellerDao.findById(3);
 		newSeller.setName("Rogerio");
 		sellerDao.update(newSeller);
+		sellerDao.deleteById(7);
 
 	}
 

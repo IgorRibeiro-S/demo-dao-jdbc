@@ -71,7 +71,7 @@ public class SellerDaoJDBC implements SellerDAO {
 			st.setDouble(4, obj.getBaseSalary());
 			st.setInt(5, obj.getDeparment().getId());
 			st.setInt(6, obj.getId());
-			
+
 			st.executeUpdate();
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
@@ -83,7 +83,22 @@ public class SellerDaoJDBC implements SellerDAO {
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE FROM seller " + "WHERE Id = ?");
+			st.setInt(1, id);
+
+			int rows = st.executeUpdate();
+			if (rows > 0) {
+				System.out.println("ID " + id + " deleted");
+			} else {
+				System.out.println("Error !! Id no exist.");
+			}
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
 
 	}
 
